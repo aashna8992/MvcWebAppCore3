@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EFSchool\EFSchool.csproj" />
-    <ProjectReference Include="..\ModelsForMVC\Models.csproj" />
   </ItemGroup>
 
 

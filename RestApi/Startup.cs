@@ -46,6 +46,8 @@ namespace RestApi
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors();
         }
     }
 }
