@@ -1,0 +1,18 @@
+﻿@model List<MvcWebAppCore3.Models.Person>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    <ul>
+        @foreach (var person in Model)
+            {
+            <li> person.FirstName </li>
+            }
+    </ul>
+
+}
+
+<input type="button" value="Create" onclick="location.href='@Url.Action("Create", "Person")'" />
