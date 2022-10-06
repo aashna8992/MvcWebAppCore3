@@ -35,7 +35,7 @@ namespace MvcWebAppCore3.Controllers
                     {
                         person.HireDate = DateTime.Now;
                     }
-                    client.BaseAddress = new Uri("http://localhost:44340/person");
+                    client.BaseAddress = new Uri("https://localhost:44340/api/person");
                     var personString = JsonConvert.SerializeObject(person);
                     var content = new StringContent(personString);
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -62,7 +62,7 @@ namespace MvcWebAppCore3.Controllers
             IList<Person> staff = new List<Person>();
             using(HttpClient client = new HttpClient())
             {
-                var response = await client.GetAsync("http://localhost:44340/Person");
+                var response = await client.GetAsync("https://localhost:44340/api/Person");
                 if (response.IsSuccessStatusCode)
                 {
                     var persons =  JsonConvert.DeserializeObject<List<Person>>(await response.Content.ReadAsStringAsync());
