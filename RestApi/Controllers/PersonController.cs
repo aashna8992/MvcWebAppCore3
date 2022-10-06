@@ -17,13 +17,12 @@ namespace RestApi.Controllers
             using (var context = new SchoolContext())
             {
                 var persons = context.Person.ToList();
-                if (persons == null)
+                if (persons == null && persons.Count() == 0)
                 {
                     return NotFound();
                 }
 
                 return Ok(persons);
-
             }
         }
 
@@ -33,7 +32,7 @@ namespace RestApi.Controllers
             using (var context = new SchoolContext())
             {
                 var persons = context.Person.Where(s => s.Discriminator == discriminator).ToList();
-                if (persons == null)
+                if (persons == null && persons.Count() == 0)
                 {
                     return NotFound();
                 }
@@ -48,13 +47,9 @@ namespace RestApi.Controllers
         {
             try
             {
-                // To open a connection to the database
                 using (var context = new SchoolContext())
                 {
-                    // Add data to the particular table
                     context.Person.Add(person);
-
-                    // save the changes
                     context.SaveChanges();
                 }
             }
@@ -62,8 +57,6 @@ namespace RestApi.Controllers
             {
                 Console.WriteLine("There was an issue in saving the person details " + ex.Message);
             }
-
-
             return Get();
         }
 
@@ -72,14 +65,13 @@ namespace RestApi.Controllers
         {
             using (var context = new SchoolContext())
             {
-                var products = await context.Person.FindAsync(id);
-
-                if (products == null)
+                var persons = await context.Person.FindAsync(id);
+                if (persons == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(products);
+                return Ok(persons);
             }
         }
     }

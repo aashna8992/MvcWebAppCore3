@@ -24,6 +24,12 @@ namespace MvcWebAppCore3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddHttpClient("PersonClient", client => 
+            {
+                client.BaseAddress = new Uri("https://localhost:44340/api/");
+                client.Timeout = TimeSpan.FromSeconds(30);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

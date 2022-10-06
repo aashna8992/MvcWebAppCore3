@@ -1,18 +1,23 @@
 ﻿@model List<MvcWebAppCore3.Models.Person>
 
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-@{
-    <ul>
-        @foreach (var person in Model)
-            {
-            <li> @person.FirstName </li>
-            }
-    </ul>
 
-}
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name </th>
+        <th>Discriminator </th>
+    </tr>
+    @foreach (var person in Model)
+    {
+        <tr>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.Discriminator</td>
+        </tr>
+    }
+</table>
 
 <input type="button" value="Create" onclick="location.href='@Url.Action("Create", "Person")'" />
